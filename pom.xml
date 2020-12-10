@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.self.learnjava</groupId>
+  <artifactId>springboot-cache</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>springboot-cache</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <java.version>1.8</java.version>
+  </properties>
+
+	<parent>
+	  	<groupId>org.springframework.boot</groupId>
+	  	<artifactId>spring-boot-starter-parent</artifactId>
+	  	<version>2.3.0.RELEASE</version>
+    </parent>
+  <dependencies>
+  	<dependency><!-- mvn dependency:tree 可以使用这个命令看大依赖树 -->
+  		<groupId>org.springframework.boot</groupId>
+  		<artifactId>spring-boot-starter-web</artifactId>
+  	</dependency>
+  	<dependency>
+	    <groupId>com.oracle.database.jdbc</groupId>
+	    <artifactId>ojdbc8</artifactId>
+	    <version>19.7.0.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.oracle.database.nls/orai18n 
+	java.sql.SQLException: 不支持的字符集 (在类路径中添加 orai18n.jar): ZHS16GBK
+	-->
+	<dependency>
+	    <groupId>com.oracle.database.nls</groupId>
+	    <artifactId>orai18n</artifactId>
+	    <version>19.7.0.0</version>
+	</dependency>
+  	<dependency><!-- springboot的抽象缓存 -->
+  		<groupId>org.springframework.boot</groupId>
+  		<artifactId>spring-boot-starter-cache</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework.boot</groupId>
+  		<artifactId>spring-boot-starter-data-redis</artifactId>
+  	</dependency>
+  	<dependency><!-- 导入配置文件处理器,配置文件再进行绑定就会有提示 -->
+  		<groupId>org.springframework.boot</groupId>
+  		<artifactId>spring-boot-configuration-processor</artifactId>
+  		<optional>true</optional>
+  	</dependency>
+  	<dependency><!-- SpringBoot的单元测试,比Junit好用 -->
+  		<groupId>org.springframework.boot</groupId>
+  		<artifactId>spring-boot-starter-test</artifactId>
+  		<scope>test</scope>
+  	</dependency>
+  	<!-- Spring Boot提供了一个开发阶段非常有用的spring-boot-devtools，能自动检测classpath路径上文件修改并自动重启。 -->
+  	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-devtools</artifactId>
+	</dependency>
+	<!--<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<scope>runtime</scope>
+	</dependency>-->
+	<dependency>
+		<groupId>org.mybatis.spring.boot</groupId>
+		<artifactId>mybatis-spring-boot-starter</artifactId>
+		<version>2.1.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-amqp</artifactId>
+	</dependency>
+	<dependency> <!--引入Elasticsearch，SpringBoot默认使用SpringData ElasticSearch模块进行操作 -->
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/io.searchbox/jest  -->
+	<dependency><!-- Elasticsearch的http操作客户端 -->
+	    <groupId>io.searchbox</groupId>
+	    <artifactId>jest</artifactId>
+	    <version>6.3.1</version>
+	</dependency>
+	<dependency><!-- 引入mail发送邮件 -->
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-mail</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-thymeleaf</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-security</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.thymeleaf.extras</groupId>
+		<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+	</dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <!-- 在打包的时候，因为打包后的Spring Boot应用不会被修改，因此，默认情况下，spring-boot-devtools这个依赖不会被打包进去。
+            	但是要注意，使用早期的Spring Boot版本时，需要配置一下才能排除spring-boot-devtools这个依赖： -->
+            <configuration>
+		        <excludeDevtools>true</excludeDevtools>
+		        <excludes>
+                    <exclude>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-configuration-processor</artifactId>
+                    </exclude>
+                </excludes>
+		    </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
