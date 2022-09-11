@@ -8,6 +8,10 @@ import org.apache.ibatis.annotations.Update;
 
 import com.learn.java.cache.bean.Employee;
 
+/**
+ * 用org.apache.ibatis.annotations.Mapper注解标识这是一个MyBatis的Mapper
+ * https://developer.aliyun.com/learning/course/613 阿里云 尚硅谷 《SpringBoot快速掌握 - 高级应用》
+ */
 @Mapper
 public interface EmployeeMapper {
 	

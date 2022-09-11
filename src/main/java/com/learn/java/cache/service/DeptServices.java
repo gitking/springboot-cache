@@ -14,9 +14,11 @@ public class DeptServices {
 	DepartmentMapper departmentMapper;
 	
 	@Cacheable(cacheNames="dept")
+//	@Cacheable(cacheNames="dept", cacheManager = "deptCacheManager")
 	public Department getDeptById(Integer id) {
 		System.out.println("查询部门" + id + ",现在没有走缓存");
 		Department dept = departmentMapper.getDeptById(id);
 		return dept;
 	}
+
 }

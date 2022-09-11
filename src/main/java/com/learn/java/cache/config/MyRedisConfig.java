@@ -15,11 +15,22 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+
+/**
+ * https://developer.aliyun.com/learning/course/613/detail/9296?spm=a2c6h.21258778.0.0.57c42d61BS7MhX#directory 《课时12: RedisTemplate&amp;序列化机》 阿里云视频 尚硅谷
+ *
+ */
 @Configuration
 public class MyRedisConfig {
-	
+
+	/**
+	 * 使用JSON进行序列化
+	 * @param redisConnectionFactory
+	 * @return
+	 * @throws UnknownHostException
+	 */
 	@Bean
-	public RedisTemplate<Object, Object> empRedisTemplate(RedisConnectionFactory redisConnectionFactory) 
+	public RedisTemplate<Object, Object> empRedisTemplate(RedisConnectionFactory redisConnectionFactory)
 	throws UnknownHostException{
 		RedisTemplate<Object, Object> template = new RedisTemplate<Object, Object>();
 		template.setConnectionFactory(redisConnectionFactory);
@@ -29,8 +40,9 @@ public class MyRedisConfig {
 		System.out.println("设置进去没???" + template.getDefaultSerializer());
 		return template;
 	}
-	
-	/*
+
+	/**
+	 * 自定义RedisCacheManager
      * SpringBoot 2.3 整合redis缓存自定义序列化
 	 * https://blog.csdn.net/weixin_44757206/article/details/106407916
 	 * 这个是SpringBoot 2.3 之前的redis修改序列化的方法

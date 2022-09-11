@@ -6,8 +6,9 @@ public class Employee implements Serializable{
 	private Integer id;
 	
 	/*
+	 * 驼峰命名法
 	 * 如果开启了mybatis的属性mybatis.configuration.map-underscore-to-camel-case=true
-	 * 那么表的字段可以是last_name,myBatis会自动把下划线后面的第一个字符变为大写再来映射
+	 * 那么表的字段可以是last_name,myBatis会自动表中的字段last_name把下划线后面的第一个字符变为大写再来映射
 	 */
 	private String lastName;
 	private String email;
