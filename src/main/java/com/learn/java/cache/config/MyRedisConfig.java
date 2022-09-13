@@ -51,6 +51,7 @@ public class MyRedisConfig {
 	@Bean
 	public CacheManager cacheManager(RedisConnectionFactory factory) {
 		RedisCacheConfiguration cacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
+				// 设置缓存的超时时间
                 .entryTtl(Duration.ofDays(1))
                 .disableCachingNullValues()
                 .serializeKeysWith(RedisSerializationContext.SerializationPair
